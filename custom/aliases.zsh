@@ -27,4 +27,36 @@ _kill_process_by_port() {
 } 
 alias pk=_kill_process_by_port
 
+_remove_bin_and_obj_dirs() {
+  directories=$(find . -type d \( -name "bin" -o -name "obj" \))
+
+  if [[ -z "$directories" ]]; then
+    echo "No 'bin' or 'obj' directories found."
+    exit 0
+  fi
+
+  # Display found directories
+  echo "Found the following directories:"
+  echo "$directories"
+
+  # Confirm before deleting
+  echo
+  echo "Do you want to delete all these directories? [y/N]"
+  read -r response
+
+  case "$response" in
+    [yY][eE][sS]|[yY])
+      while IFS= read -r dir; do
+        rm -rf "$dir"
+        echo "Deleted $dir"
+      done <<< "$directories"
+      echo "All specified directories have been deleted."
+      ;;
+    *)
+      echo "Operation canceled. No directories were deleted."
+      ;;
+  esac
+}
+alias rm_bin=_remove_bin_and_obj_dirs
+
 alias guid=uuidgen
