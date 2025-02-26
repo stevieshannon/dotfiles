@@ -1,0 +1,36 @@
+# This is Git's per-user configuration file.
+[user]
+	email = stephen.shannon@totalmobile.co.uk
+	name = stevieshannon
+
+# Config
+
+[branch]
+	sort = -committerdate
+
+[tag]
+	sort = version:refname
+
+[diff]
+	algorithm = histogram
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
+
+[push]
+	default = simple
+	autoSetupRemote = true
+	followTags = true
+
+[fetch]
+	prune = true
+	pruneTags = true
+	all = true
+
+# QoL
+
+[help]
+	autocorrect = prompt
+
+[merge]
+	conflictstyle = zdiff3 

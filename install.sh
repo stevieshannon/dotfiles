@@ -8,6 +8,12 @@ if [ -f "$HOME/.zshenv" ]; then
 fi
 echo "export PHRISK_DOTFILES=$install_dir" > "$HOME/.zshenv"
 
+## gitconfig
+
+if [ -f "$HOME/.gitconfig" ]; then
+  mv "$HOME/.gitconfig" "$HOME/.gitconfig.backup-$timestamp"
+fi
+cp .gitconfig "$HOME/.gitconfig"
 
 ## zshrc
 
